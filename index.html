@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Save Page Content</title>
+</head>
+<body>
+  <button id="savePageContent">Save Page Content</button>
+  <div>html로 변환</div>
+  <script>
+    document.getElementById('savePageContent').addEventListener('click', function() {
+      const pageContent = document.documentElement.outerHTML;
+
+      const blob = new Blob([pageContent], { type: 'text/html' });
+
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'page.html';
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+  </script>
+</body>
+</html>
